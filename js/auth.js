@@ -6,7 +6,7 @@ const firebaseConfig = {
   projectId: "mary-josette-finance",
   storageBucket: "mary-josette-finance.appspot.com",
   messagingSenderId: "161649825972",
-  appId: "1:161649825972:web:9c45b2ef7ce85a571cdfe1"
+  appId: "1:161649825972:web:9c45b2ef7ce85a571cdfe11"
 };
 
 const app = initializeApp(firebaseConfig);
