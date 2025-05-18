@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script defer type="module" src="/js/dashboard.js"></script>
+  <script type="module" src="/js/navbar.js"></script>
+  <script defer type="module" src="/js/auth.js"></script>
+
+</head>
+</head>
+
+<body>
+  <div id="sidebar-overlay"></div>
+  <div class="dashboard-container">
+    <div class="sidebar" id="nav-bar">
+      <button id="close-sidebar">&times;</button>
+      <div class="logo-box">
+        <div class="logo">
+          <img src="/images/mja-logo.png" alt="Logo">
+        </div>
+        <div class="academy-name">Mary Josette Academy</div>
+      </div>
+      <nav>
+        <ul>
+          <li class="nav_link active"><a href="/html/dashboard.html" id="dashboard-link"><img
+                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                Dashboard</span></a></li>
+          <li class="nav_link"><a href="/html/students.html"><img src="/Mary Josette Icons/Students.png" alt="Students"
+                class="nav-icon"><span> Students </span></a></li>
+          <li class="nav_link"><a href="/html/report.html" id="reports-link"><img src="/Mary Josette Icons/Rename.png"
+                alt="Reports" class="nav-icon"><span> Reports </span></a></li>
+          <li class="nav_link"><a href="/html/settings.html"><img src="/Mary Josette Icons/Fees And Accounts.png"
+                alt="Settings" class="nav-icon"><span>Fees & Accounts </span></a></li>
+          <li class="nav_link"><a href="/html/remittances.html"><img src="/Mary Josette Icons/Remitances.png"
+                alt="Remittances" class="nav-icon"><span> Remittances </span></a></li>
+          <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                Summary</span></a></li>
+          <li class="nav_link"><a href="/html/archive.html" id="archive-link"> <img
+                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span> Archive</span></a>
+          </li>
+          <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png" alt="Logout"
+                class="nav-icon">
+              <span> Logout </span></a></li>
+
+        </ul>
+      </nav>
+    </div>
+    <main class="main-content-dashboard">
+      <header class="header">
+        <button id="header-toggle">☰</button>
+        <h1>Dashboard</h1>
+        <h4>School Year: <span class="schoolyear" id="schoolyear"> </span></h4>
+      </header>
+
+      <section class="overview">
+        <a href="/html/report.html?tab=remittances" class="overview-card solid-purple">
+          <img src="/Mary Josette Icons/save-time.png" alt="Remittances Icon" class="overview-icon">
+          <div class="overview-space">
+            <p>Net Remittances</p>
+            <h2>Loading...</h2>
+          </div>
+        </a>
+        <a href="/html/report.html?tab=collections" class="overview-card solid-red">
+          <img src="/Mary Josette Icons/financial-profit.png" alt="Collections Icon" class="overview-icon">
+          <div class="overview-space">
+            <p>Total Collections</p>
+            <h2>Loading...</h2>
+          </div>
+        </a>
+        <a href="/html/report.html?tab=expenses" class="overview-card solid-green">
+          <img src="/Mary Josette Icons/money_96.png" alt="Expenses Icon" class="overview-icon">
+          <div class="overview-space">
+            <p>Total Expenses</p>
+            <h2>Loading...</h2>
+          </div>
+        </a>
+        <a href="/html/students.html" class="overview-card solid-blue">
+          <img src="/Mary Josette Icons/profile_96.png" alt="Students Icon" class="overview-icon">
+          <div class="overview-space">
+            <p>Listed Students</p>
+            <h2 id="total-students">Loading...</h2>
+          </div>
+        </a>
+      </section>
+
+      <section class="statistics">
+        <div class="chart">
+          <h3>Remittance Chart</h3>
+          <select id="timeFilter">
+            <option value="week" selected disabled>Filter by ▼</option>
+            <option value="week">Week </option>
+            <option value="month">Month </option>
+            <option value="year">Year </option>
+          </select>
+          <canvas id="remittanceChart"></canvas>
+        </div>
+
+        <div class="fees-overview">
+          <h3>Fees overview</h3>
+          <canvas id="feesDoughnutChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</body>
+
+</html>

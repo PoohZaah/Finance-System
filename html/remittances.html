@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remittances</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/remittances.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/js/navbar.js"></script>
+    <script defer type="module" src="/js/remittances.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer type="module" src="/js/auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <div class="dashboard-container">
+        <div class="sidebar" id="nav-bar">
+            <button id="close-sidebar">&times;</button>
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="/images/mja-logo.png" alt="Logo">
+                </div>
+                <div class="academy-name">Mary Josette Academy</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav_link"><a href="/html/dashboard.html" id="dashboard-link"><img
+                                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                                Dashboard </span></a></li>
+                    <li class="nav_link"><a href="/html/students.html"><img src="/Mary Josette Icons/Students.png"
+                                alt="Students" class="nav-icon"><span> Students </span></a></li>
+
+                    <li class="nav_link"><a href="/html/report.html" id="reports-link"><img
+                                src="/Mary Josette Icons/Rename.png" alt="Reports" class="nav-icon"><span> Reports
+                            </span></a></li>
+                    <li class="nav_link"><a href="/html/settings.html"><img
+                                src="/Mary Josette Icons/Fees And Accounts.png" alt="Settings" class="nav-icon"><span>
+                                Fees & Accounts </span></a></li>
+                    <li class="nav_link active"><a href="/html/remittances.html"><img
+                                src="/Mary Josette Icons/Remitances.png" alt="Remittances" class="nav-icon"><span>
+                                Remittances </span></a></li>
+                    <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                                Summary</span></a></li>
+                    <li class="nav_link"><a href="/html/archive.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span>
+                                Archive</span></a></li>
+                    <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png"
+                                alt="Logout" class="nav-icon"><span> Logout </span></a></li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <main class="main-content-dashboard">
+            <header class="header">
+                <button id="header-toggle">☰</button>
+                <h1>Remittances</h1>
+                <h4>School Year : <span class="schoolyear" id="schoolyear"> </span></h4>
+            </header>
+
+            <div class="remittance-container">
+                <section class="remittance-form">
+                    <h2 class="student-details-heading">Expenses Details</h2>
+                    <form id="remittanceForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" readonly>
+
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" z>
+
+                        <div id="expensesContainer">
+                            <label for="totalExpenses">Expenses:</label>
+                            <div class="expense-entry">
+                                <select id="expenseDropdown" class="expenseType">
+                                    <option value="">Expense Type</option>
+                                </select>
+                                <input type="number" id="expenseAmount" class="expenseAmount" placeholder="Amount">
+                                <input type="text" id="expensePurpose" class="expensePurpose" placeholder="Purpose">
+                                <button type="button" class="add-expense-button" id="addExpense">Add Expense</button>
+                            </div>
+                        </div>
+                        <h3>Expenses List</h3>
+                        <ul id="addedExpenses"></ul>
+                    </form>
+                </section>
+
+                <section class="daily-total">
+                    <h2>Daily Total Transactions</h2>
+                    <div class="receipt">
+                        <div class="date-header">
+                            <span class="date-label">Date:</span>
+                            <span id="transactionDate" class="date-value"></span>
+                        </div>
+                        <h3>Payments List</h3>
+                        <ul id="transactionSummary"></ul>
+                        <ul>
+                            <li><span>Total Payments</span> <span><strong id="totalPayments"
+                                        style="color: rgb(201, 10, 10);">₱0.00</strong></span></li>
+                            <li><span>Total Expenses</span> <span><strong id="totalExpenses"
+                                        style="color: rgb(201, 10, 10);">₱0.00</strong></span></li>
+                            <li><span><strong>Net Total</strong></span> <span><strong id="netTotal"
+                                        style="color: rgb(201, 10, 10);">₱0.00</strong></span></li>
+                        </ul>
+                        <button class="submit-button" id="submitRemittancesBtn">Submit</button>
+                    </div>
+                </section>
+            </div>
+
+            <section class="transaction-history">
+                <h2>Remittance History</h2>
+                <div class="history-filter">
+                    <label for="historyDateFilter">Filter by Date:</label>
+                    <input type="date" id="historyDateFilter">
+                    <button id="clearDateFilterBtn" class="clear-filter-btn">Clear</button>
+                </div>
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Total Collections</th>
+                            <th>Total Expenses</th>
+                            <th>Net Remittances</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button id="prevPage">Prev</button>
+                    <span id="pageInfo"></span>
+                    <button id="nextPage">Next</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Transaction Details</h2>
+            <div id="modalContent">
+            </div>
+            <button id="downloadPdfBtn">Download PDF</button>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

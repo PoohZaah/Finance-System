@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/report.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script defer src="/js/navbar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="/js/report.js"></script>
+    <script defer type="module" src="/js/auth.js"></script>
+
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <div class="dashboard-container">
+        <div class="sidebar" id="nav-bar">
+            <button id="close-sidebar">&times;</button>
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="/images/mja-logo.png" alt="Logo">
+                </div>
+                <div class="academy-name">Mary Josette Academy</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav_link"><a href="/html/dashboard.html" id="dashboard-link"> <img
+                                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                                Dashboard</span></a></li>
+                    <li class="nav_link"><a href="/html/students.html"><img src="/Mary Josette Icons/Students.png"
+                                alt="Students" class="nav-icon"><span> Students </span></a></li>
+                    <li class="nav_link active"><a href="/html/report.html" id="reports-link"><img
+                                src="/Mary Josette Icons/Rename.png" alt="Reports" class="nav-icon"><span> Reports
+                            </span></a></li>
+                    <li class="nav_link"><a href="/html/settings.html"><img
+                                src="/Mary Josette Icons/Fees And Accounts.png" alt="Settings"
+                                class="nav-icon"><span>Fees & Accounts </span></a></li>
+                    <li class="nav_link"><a href="/html/remittances.html"><img src="/Mary Josette Icons/Remitances.png"
+                                alt="Remittances" class="nav-icon"><span> Remittances </span></a></li>
+                    <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                                Summary</span></a></li>
+                    <li class="nav_link"><a href="/html/archive.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span>
+                                Archive</span></a></li>
+                    <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png"
+                                alt="Logout" class="nav-icon">
+                            <span> Logout </span></a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+
+        <main class="main-content-dashboard">
+            <header class="header">
+                <button id="header-toggle">☰</button>
+                <h1>Reports</h1>
+                <h4>School Year : <span class="schoolyear" id="schoolyear"> </span></h4>
+            </header>
+
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                </div>
+                <div class="dropdowns">
+                    <div id="categoryFilter">
+                        <label>Category :</label>
+                        <select id="categoryDropdown">
+                            <option value="all">All</option>
+                            <option value="tuition">Tuition</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                    <label id="reportingPeriodLabel">Reporting Period :</label>
+                    <select id="reportingPeriodDropdown">
+                        <option value="all">All</option>
+                        <option value="today">This day</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+
+
+                    <div id="expensesTypeFilter" style="display: none;">
+                        <label>Expenses Type: </label>
+                        <select id="expensesTypeDropdown">
+                            <option value="all">All</option>
+                            <option value="Printing">Printing</option>
+                            <option value="Canteen">Canteen</option>
+                            <option value="School Supplies">School Supplies</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Water">Water</option>
+                        </select>
+                    </div>
+                    <div class="date-filter">
+                        <label>Date:</label>
+                        <input type="date" id="dateFilter" class="form-control">
+                        <i class="fas fa-calendar-alt datepicker-icon"></i>
+                        <button id="clearDateFilter" class="clear-date-btn" title="Clear date filter">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="sort-filter">
+                    <label>Sort by :</label>
+                    <button id="studentsBtn" class="sort-btn active">Students</button>
+                    <button id="collectionsBtn" class="sort-btn">Collections</button>
+                    <button id="expensesBtn" class="sort-btn">Expenses</button>
+                    <button id="remittancesBtn" class="sort-btn">Remittances</button>
+                </div>
+                <div class="buttons">
+                    <button class="print-button" id="printReportBtn">Print Report</button>
+                    <button class="excel" id="exportExcelBtn">Download Excel</button>
+                </div>
+            </div>
+
+            <div id="collectionsTable">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Student Number</th>
+                            <th>Student Name</th>
+                            <th>Grade Level</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Processed By</th>
+                        </tr>
+                    </thead>
+                    <tbody id="collectionsBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="expensesTable" style="display: none;">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Purpose</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="studentsTable" style="display: none;">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student Number</th>
+                            <th>Grade Level</th>
+                            <th>Plan</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsBody">
+                        <tr>
+                            <td colspan='4'>Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="remittancesTable" style="display: none;">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Total Collections</th>
+                            <th>Total Expenses</th>
+                            <th>Total Remittances</th>
+                        </tr>
+                    </thead>
+                    <tbody id="remittancesBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+</body>
+
+</html>

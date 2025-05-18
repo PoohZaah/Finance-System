@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees & Accounts</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/settings.css">
+    <script defer src="/js/navbar.js"></script>
+    <script defer type="module" src="/js/settings.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script defer type="module" src="/js/auth.js"></script>
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <div class="dashboard-container">
+        <div class="sidebar" id="nav-bar">
+            <button id="close-sidebar">&times;</button>
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="/images/mja-logo.png" alt="Logo">
+                </div>
+                <div class="academy-name">Mary Josette Academy</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav_link"><a href="/html/dashboard.html" id="dashboard-link"> <img
+                                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                                Dashboard</span></a></li>
+                    <li class="nav_link"><a href="/html/students.html"><img src="/Mary Josette Icons/Students.png"
+                                alt="Students" class="nav-icon"><span> Students </span></a></li>
+
+                    <li class="nav_link"><a href="/html/report.html" id="reports-link"><img
+                                src="/Mary Josette Icons/Rename.png" alt="Reports" class="nav-icon"><span> Reports
+                            </span></a></li>
+                    <li class="nav_link active"><a href="/html/settings.html"><img
+                                src="/Mary Josette Icons/Fees And Accounts.png" alt="Settings"
+                                class="nav-icon"><span>Fees & Accounts </span></a></li>
+                    <li class="nav_link"><a href="/html/remittances.html"><img src="/Mary Josette Icons/Remitances.png"
+                                alt="Remittances" class="nav-icon"><span> Remittances </span></a></li>
+                    <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                                Summary</span></a></li>
+                    <li class="nav_link"><a href="/html/archive.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span>
+                                Archive</span></a></li>
+                    <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png"
+                                alt="Logout" class="nav-icon"><span> Logout </span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <main class="main-content-dashboard">
+            <header class="header">
+                <button id="header-toggle">☰</button>
+                <h1>Fees & Accounts</h1>
+                <h4>School Year :
+                    <span class="schoolyear" id="schoolyear"></span>
+                    <button id="editSchoolYearBtn" class="edit-btn">Edit</button>
+                </h4>
+            </header>
+
+            <div class="settings-container">
+                <div class="left-section">
+                    <h2>Plan Management</h2>
+                    <label for="filterGrade">Select Grade Level :</label>
+                    <select id="filterGrade">
+                        <option value="all" selected>All Grades</option>
+                        <option value="Pre-Elem">Pre-Elem</option>
+                        <option value="1">Grade 1</option>
+                        <option value="2">Grade 2</option>
+                        <option value="3">Grade 3</option>
+                        <option value="4">Grade 4</option>
+                        <option value="5">Grade 5</option>
+                        <option value="6">Grade 6</option>
+                        <option value="7">Grade 7</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                        <option value="11">Grade 11</option>
+                        <option value="12">Grade 12</option>
+                    </select>
+
+                    <button id="openPlanModal">+ Add Plan</button>
+
+                    <div class="table-container">
+                        <table class="plan-table">
+                            <thead>
+                                <tr>
+                                    <th>Plan</th>
+                                    <th>Grade Level</th>
+                                    <th>Down Payment</th>
+                                    <th>Monthly Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="planTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tuition-expenses-container">
+                    <section class="tuition-fee-section">
+                        <div class="tuition-header">
+                            <h2>Tuition Fees</h2>
+                        </div>
+
+                        <label for="grade-select">Select Grade Level:</label>
+                        <select id="grade-select">
+                            <option value="" disabled selected>Select Grade</option>
+                            <option value="Pre-Elem">Pre-Elem</option>
+                            <option value="1">Grade 1</option>
+                            <option value="2">Grade 2</option>
+                            <option value="3">Grade 3</option>
+                            <option value="4">Grade 4</option>
+                            <option value="5">Grade 5</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+
+                        <div class="tuition-fee-wrapper">
+                            <p id="tuition-fee">
+                                Tuition Fee : ₱
+                                <input type="number" id="tuition-amount" value="0" disabled>
+                            </p>
+                            <button id="editTuitionBtn">✎ Edit</button>
+                            <button id="saveTuitionBtn" class="hidden">Save</button>
+                            <button id="cancelTuitionBtn" class="hidden">Cancel</button>
+                        </div>
+                    </section>
+
+                    <section class="expenses-section">
+                        <div class="expenses-header">
+                            <h2>Expenses</h2>
+                        </div>
+
+                        <div class="expense-inputs">
+                            <input type="text" id="expenseName" placeholder="Enter Expense" autocomplete="off">
+                            <button id="addExpenseBtn">+ Add Expense</button>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="expenses-table">
+                                <thead>
+                                    <tr>
+                                        <th>Expense</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expensesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="editTuitionModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('editTuitionModal')">&times;</span>
+                        <h3>Edit Tuition Fee</h3>
+
+                        <label for="edit-grade-select">Select Grade Level:</label>
+                        <select id="edit-grade-select">
+                            <option value="" disabled selected>Select Grade</option>
+                            <option value="Pre-Elem">Pre-Elem</option>
+                            <option value="1">Grade 1</option>
+                            <option value="2">Grade 2</option>
+                            <option value="3">Grade 3</option>
+                            <option value="4">Grade 4</option>
+                            <option value="5">Grade 5</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+
+                        <p>Current Tuition Fee: <span id="currentTuitionFee">₱0.00</span></p>
+
+                        <label for="newTuitionFee">New Tuition Fee:</label>
+                        <input type="number" id="newTuitionFee" placeholder="Enter New Amount">
+
+                        <button onclick="updateTuitionFee()">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="fees">
+
+                <div class="filters">
+                    <div class="sort-filter">
+                        <label>Select Table for:</label>
+                        <button id="staffBtn" class="sort-btn active" onclick="switchTable('staffTable')">Staff</button>
+                        <button id="activitiesBtn" class="sort-btn"
+                            onclick="switchTable('activitiesTable')">Activities</button>
+                        <button id="feesBtn" class="sort-btn" onclick="switchTable('feesTable')">Miscellaneous</button>
+                        <button id="discountsBtn" class="sort-btn"
+                            onclick="switchTable('discountsTable')">Discounts</button>
+                    </div>
+                </div>
+                <div id="staffTable" class="history-table-container active-table">
+                    <h2>User Management</h2>
+                    <button id="openStaffModal">+ Create Account</button>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="activitiesTable" class="history-table-container">
+                    <h2>Activities Management</h2>
+                    <button id="openActivityModal">+ Create Activity</button>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activitiesTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="feesTable" class="history-table-container">
+                    <h2>Miscellaneous Fees Management</h2>
+                    <button id="openAdditionalFeeModal">+ Add Miscellaneous</button>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Miscellaneous</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="additionalFeesTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="discountsTable" class="history-table-container">
+                    <h2>Discount Management</h2>
+                    <button id="openDiscountModal">+ Add Discount</button>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Discount</th>
+                                <th>Amount (₱)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="discountTableBody"></tbody>
+                    </table>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <div id="discountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('discountModal')">&times;</span>
+            <h3>Create Discount</h3>
+            <label for="discountName">Discount:</label>
+            <input type="text" id="discountName" placeholder="Enter Discount">
+            <label for="discountAmount">Amount (₱):</label>
+            <input type="number" id="discountAmount" placeholder="Enter Amount">
+            <button onclick="submitDiscount()">Add Discount</button>
+        </div>
+    </div>
+
+    <div id="staffModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('staffModal')">&times;</span>
+            <h3>Create Staff Account</h3>
+            <label for="staffName">Name:</label>
+            <input type="text" id="staffName" placeholder="Enter Name">
+
+            <label for="staffEmail">Email:</label>
+            <input type="email" id="staffEmail" placeholder="Enter Email">
+
+            <label for="staffPassword">Password:</label>
+            <input type="password" id="staffPassword" placeholder="Enter Password">
+
+            <label for="staffPosition">Position:</label>
+            <select id="staffPosition">
+                <option value="Admin">Admin</option>
+                <option value="Staff">Staff</option>
+            </select>
+
+            <button onclick="submitStaff()">Create</button>
+        </div>
+    </div>
+
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('activityModal')">&times;</span>
+            <h3>Create Activity</h3>
+            <label for="activityName">Activity:</label>
+            <input type="text" id="activityName" placeholder="Enter Activity">
+
+            <label for="Amount">Amount:</label>
+            <input type="number" id="Amount" placeholder="Enter Amount">
+
+            <div class="checkbox-group vertical">
+                <div><input type="checkbox" id="activityAll"> <label>All</label></div>
+                <div><input type="checkbox" id="activityPreElem"> <label>Pre-Elem</label></div>
+                <div><input type="checkbox" id="activityElem"> <label>Elementary</label></div>
+                <div><input type="checkbox" id="activityJH"> <label>Junior High</label></div>
+                <div><input type="checkbox" id="activitySH"> <label>Senior High</label></div>
+            </div>
+
+            <button onclick="submitActivity()">Create</button>
+        </div>
+    </div>
+
+    <div id="additionalFeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('additionalFeeModal')">&times;</span>
+            <h3>Create Miscellaneous</h3>
+            <label for="feeName">Miscellaneous:</label>
+            <input type="text" id="feeName" placeholder="Enter Miscellaneous">
+
+            <label for="feeAmount">Amount:</label>
+            <input type="number" id="feeAmount" placeholder="Enter Amount">
+
+            <div class="checkbox-group vertical">
+                <div><input type="checkbox" id="feeAll"> <label>All</label></div>
+                <div><input type="checkbox" id="feePreElem"> <label>Pre-Elem</label></div>
+                <div><input type="checkbox" id="feeElem"> <label>Elementary</label></div>
+                <div><input type="checkbox" id="feeJH"> <label>Junior High</label></div>
+                <div><input type="checkbox" id="feeSH"> <label>Senior High</label></div>
+            </div>
+
+            <button>Add Fee</button>
+        </div>
+    </div>f
+    </div>
+    </div>
+    <div id="planModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('planModal')">&times;</span>
+            <h3>Add Plan</h3>
+
+            <label for="planName">Plan:</label>
+            <input type="text" id="planName" placeholder="Enter Plan">
+
+            <label for="gradeLevel">Select Grade Level:</label>
+            <select id="gradeLevel">
+                <option value="" disabled selected>Select Grade Level</option>
+                <option value="Pre-Elem">Pre-Elem</option>
+                <option value="1">Grade 1</option>
+                <option value="2">Grade 2</option>
+                <option value="3">Grade 3</option>
+                <option value="4">Grade 4</option>
+                <option value="5">Grade 5</option>
+                <option value="6">Grade 6</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+                <option value="9">Grade 9</option>
+                <option value="10">Grade 10</option>
+                <option value="11">Grade 11</option>
+                <option value="12">Grade 12</option>
+            </select>
+
+            <label for="downPayment">Down Payment:</label>
+            <input type="number" id="downPayment" placeholder="Enter Down Payment">
+
+            <label for="planDescription">Plan Description:</label>
+            <select id="planDescription">
+                <option value="" disabled selected>Select Grade Level</option>
+                <option value="Cash">Cash</option>
+                <option value="Installment">Installment</option>
+            </select>
+
+            <label for="monthlyPayment">Monthly Payment:</label>
+            <input type="number" id="monthlyPayment" placeholder="Enter Monthly Payment">
+
+            <button onclick="submitPlan()">Create Plan</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.academy-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+}
+
+.sidebar.closed .academy-name {
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0.1s; /* Optional: slight delay to match sidebar collapse */
+}
+
+.sidebar {
+  width: 250px;
+  background: #3b2424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+.sidebar .logo {
+  text-align: center;
+  padding-top: 30px;
+  transition: height 0.3s ease-in-out, width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.sidebar .logo img {
+  max-width: 100px;
+  max-height: 100px;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.sidebar.closed .logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar nav {
+  width: 100%;
+  padding: 0;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav ul li {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  padding: 12px 20px;
+  background: #3b2424;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out, padding 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar nav ul li a:hover {
+  background: #A888B5;
+  color: #fff;
+}
+
+.nav_link.active a {
+  background: #A888B5;
+  font-weight: bold;
+  color: white;
+}
+
+.nav_link.active a:hover {
+  background: #C0A3D3;
+}
+
+.sidebar.closed .nav_link.active a {
+  background: #A888B5;
+  justify-content: center;
+}
+
+.sidebar.closed .nav_link span {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.nav_link span {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.sidebar.closed nav ul li a {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease-in-out;
+  color: aqua;
+}
+
+#close-sidebar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  z-index: 1100;
+}
+
+.sidebar.closed #close-sidebar {
+  display: none;
+  background-color: #ffde59;
+  color: #333;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+#sidebar-overlay {
+  display: none;
+}
+
+.main-content-dashboard {
+  flex: 1;
+  padding: 20px;
+  background: #f8f9fa;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.closed+.main-content-dashboard {
+  margin-left: 70px;
+}
+
+#header-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.sidebar.closed+.main-content-dashboard .header #header-toggle {
+  display: block;
+}
+
+#header-toggle:hover {
+  transform: scale(1.2);
+}
+
+.sidebar.closed+.main-content-dashboard .header #header-toggle {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-active #header-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.admin-visible, .admin-hidden {
+  transition: opacity 0.2s ease-out, visibility 0.2s linear !important;
+}
+
+.admin-hidden {
+  display: none !important;
+}
+
+.admin-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+body.staff #dashboard-link,
+body.staff #reports-link {
+    display: none !important;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content-dashboard {
+    margin-left: 200px;
+  }
+
+  .sidebar.closed+.main-content-dashboard {
+    margin-left: 70px;
+  }
+}

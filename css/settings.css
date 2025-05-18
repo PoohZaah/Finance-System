@@ -1,0 +1,842 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #7a4f4f;
+    text-align: center;
+    border-bottom: 3px solid #a37a7a;
+    padding-bottom: 5px;
+    padding: 12px 0;
+    margin: 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.header h4 {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 16px;
+    color: black;
+}
+
+.settings-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.left-section {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #a37a7a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 810px;
+}
+
+.tuition-fee-section {
+    flex: 1;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #a37a7a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: auto;
+}
+
+.tuition-fee-section h3,
+.left-section h3 {
+    margin-bottom: 10px;
+    color: #a37a7a;
+    margin-top: -10px;
+}
+
+.tuition-fee-section label {
+    font-weight: bold;
+    color: #333;
+}
+
+.tuition-fee-section select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #a37a7a;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.tuition-fee-section p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    background-color: #e6ecb1;
+    max-width: max-content;
+    border-radius: 5px;
+    padding: 10px;
+    line-height: normal;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.expenses-section {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #a37a7a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 495px;
+    margin-top: 20px;
+}
+
+.edit-expense,
+.delete-expense {
+    min-width: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 5px;
+    transition: background 0.3s ease;
+}
+
+.edit-expense {
+    background: #4CAF50;
+    color: white;
+}
+
+.delete-expense {
+    background: #f44336;
+    color: white;
+}
+
+.edit-expense:hover {
+    background: #45a049;
+}
+
+.delete-expense:hover {
+    background: #da190b;
+}
+
+.expenses-header h {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #7a4f4f;
+    text-align: center;
+    border-bottom: 3px solid #a37a7a;
+    padding-bottom: 5px;
+    padding: 12px 0;
+    margin: 0;
+}
+
+.expense-inputs {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.expense-inputs input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #a37a7a;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#addExpenseBtn {
+    background: #00bf63;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+#addExpenseBtn:hover {
+    background:  #008d49;
+}
+
+.expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expenses-table th,
+.expenses-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #916666;
+}
+
+.expenses-table th {
+    background-color: #916666;
+    color: white;
+}
+
+.expenses-table tbody tr:nth-child(odd) {
+    background-color: #f5eaea;
+}
+
+.settings-section {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #a37a7a;
+}
+
+.sort-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #a37a7a;
+}
+
+.sort-filter button {
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #a37a7a;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.sort-filter button.active {
+    background-color: #7a4f4f;
+    color: white;
+}
+
+.sort-filter button:hover {
+    background-color: #613737;
+    color: white;
+}
+
+.table-container {
+    max-height: 75%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.history-table, .plan-table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+}
+
+.history-table th,
+.history-table td, .plan-table th, .plan-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #a37a7a;
+}
+
+.history-table th, .plan-table th {
+    background-color: #a37a7a;
+    color: white;
+}
+
+.history-table tbody tr:nth-child(odd), .plan-table tbody tr:nth-child(odd) {
+    background-color: #f5eaea;
+}
+
+.history-table tbody tr:nth-child(even), .plan-table tbody tr:n {
+    background-color: #ffffff;
+}
+
+button.deletePlan {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.deletePlan:hover {
+    background-color: #cc0000;
+}
+
+@media (max-width: 768px) {
+    .history-table th,
+    .history-table td,
+    .plan-table th,
+    .plan-table td {
+        padding: 8px;
+        font-size: 16px;
+    }
+}
+
+.fees {
+    border: 2px solid #a37a7a;
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.tuition-header h {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #7a4f4f;
+    text-align: center;
+    border-bottom: 3px solid #a37a7a;
+    padding-bottom: 5px;
+    padding: 12px 0;
+    margin: 0;
+}
+
+.tuition-header button {
+    background: #4d84ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tuition-header button:hover {
+    background: #2155cb;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    position: relative;
+}
+
+.modal h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+.modal input,
+.modal select {
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #a37a7a;
+    border-radius: 5px;
+}
+
+.modal button {
+    position: relative;
+    margin-top: 15px;
+    background: #7a4f4f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.modal button:hover {
+    background: #613737;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #a37a7a;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: #7a4f4f;
+}
+
+.left-section {
+    position: relative;
+    padding: 20px;
+}
+
+#openPlanModal {
+    position: absolute;
+    top: 3px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #00bf63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 25px;
+}
+
+#openPlanModal:hover {
+    background-color: #008d49;
+    color: white;
+}
+
+button.deleteStaff,
+button.deleteActivity,
+button.deleteFee,
+button.deleteDiscount {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.editActivity,
+.editFee,
+.editDiscount{
+    background-color: #4d84ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.viewStudents{
+    background-color: #4d84ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.viewStudents:hover{
+    background-color: #2155cb;
+}
+
+.editActivity:hover,
+.editFee:hover{
+    background-color: #2155cb;
+}
+
+button.deleteStaff:hover,
+button.deleteActivity:hover,
+button.deleteFee:hover,
+button.deleteDiscount:hover {
+    background-color: #cc0000;
+}
+
+#filterGrade {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: 2px solid #a37a7a;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+#openStaffModal{
+    position: relative;
+    bottom: 55px;
+    width: 220px;
+    background: #00bf63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-end;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+#openStaffModal:hover{
+    background-color: #008d49;
+    color: white;
+}
+
+#openAdditionalFeeModal {
+    position: relative;
+    bottom: 55px;
+    width: 220px;
+    background: #00bf63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-end;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+/* Updated Required Checkbox Section */
+.fee-required-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0 0 0;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.fee-required-container label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    order: 2;
+}
+
+.fee-required-container input[type="checkbox"] {
+    order: 1;
+    accent-color: #00bf63;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.modal-content button {
+    width: 220px;
+    background: #00bf63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+    background: #00a758;
+}
+
+.modal-content button:active {
+    background: #008f4c;
+}
+
+#openActivityModal{
+    position: relative;
+    bottom: 55px;
+    width: 220px;
+    background: #00bf63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-end;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+#openDiscountModal{
+    position: relative;
+    bottom: 55px;
+    width: 220px;
+    background: #00bf63;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-end;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+button.editPlan, button.deletePlan {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+button.editPlan {
+    background-color: #7a4f4f;
+    color: white;
+    border: none;
+}
+
+button.editPlan:hover {
+    background-color: #613737;
+}
+
+button.deletePlan {
+    background-color: #f74c40;
+    color: white;
+    border: none;
+}
+
+button.deletePlan:hover {
+    background-color: #e91f10;
+}
+
+button.editPlan:focus, button.deletePlan:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#editTuitionBtn,
+#saveTuitionBtn,
+#cancelTuitionBtn {
+    background: #4d84ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 28px;
+    transition: background 0.3s;
+    margin-left: 10px;
+}
+
+#editTuitionBtn:hover,
+#saveTuitionBtn:hover,
+#cancelTuitionBtn:hover {
+    background: #2155cb;
+}
+
+.hidden {
+    display: none;
+}
+
+.tuition-fee-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#tuition-fee {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffde59;
+    border-radius: 5px;
+    padding: 8px 12px;
+    flex-grow: 1;
+}
+
+#tuition-amount {
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+    text-align: right;
+    flex-grow: 1;
+}
+
+#tuition-amount:focus {
+    border-bottom: 2px solid #a37a7a;
+    outline: none;
+}
+
+#editTuitionBtn {
+    background: #7a4f4f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+#editTuitionBtn:hover {
+    background: #613737;
+}
+
+.staff-hidden {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.view-password-btn {
+    background: #4d84ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background 0.3s;
+}
+
+.view-password-btn:hover {
+    background: #2155cb;
+}
+
+.password-popup {
+    max-width: 300px;
+    word-break: break-all;
+}
+
+.change-password-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background 0.3s;
+}
+
+.change-password-btn:hover {
+    background-color: #f57c00;
+}
+
+.swal2-input-container {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.swal2-input {
+    padding-right: 35px !important;
+}
+
+.checkbox-group.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.checkbox-group.vertical div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.checkbox-group.vertical input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #7a4f4f; /* Match your color scheme */
+}
+.edit-btn {
+    margin-left: 10px;
+    padding: 2px 8px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}

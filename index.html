@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="/images/mja-logo.png" alt="Logo" class="logo">
+            <h1 class="title">Log in to your account</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" autocomplete="off">
+                        <span class="password-toggle-icon">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCzmy4HDBlnveHLg1wMBk4ZYCoLd-Y1C4E",
+            authDomain: "mary-josette-finance.firebaseapp.com",
+            databaseURL: "https://mary-josette-finance-default-rtdb.firebaseio.com/",
+            projectId: "mary-josette-finance",
+            storageBucket: "mary-josette-finance.appspot.com",
+            messagingSenderId: "161649825972",
+            appId: "1:161649825972:web:9c45b2ef7ce85a571cdfe1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const loginForm = document.getElementById("login-form");
+
+        document.querySelector(".password-toggle-icon").addEventListener("click", function () {
+            const passwordInput = document.getElementById("password");
+            const togglePassword = document.querySelector(".password-toggle-icon i");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        });
+
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                Swal.fire("Missing Information", "Please enter both email and password.", "warning");
+                return;
+            }
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                const uid = user.uid; // Get UID from Firebase Auth
+
+                const staffRef = ref(db, `staff/${uid}`);
+                const staffSnapshot = await get(staffRef);
+
+                if (staffSnapshot.exists()) {
+                    const staffData = staffSnapshot.val(); // Directly get the staff data
+
+                    sessionStorage.setItem("uid", uid);
+                    sessionStorage.setItem("email", email);
+                    sessionStorage.setItem("name", staffData.name); // Correctly access properties
+                    sessionStorage.setItem("position", staffData.position);
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Login Successful!",
+                        text: "Redirecting to the dashboard...",
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        
+                        if(staffData.position === "Staff"){
+                            window.location.href = "/html/students.html";
+                    }else {
+                        window.location.href = "/html/dashboard.html";
+                    }
+
+                    });
+                } else {
+                    Swal.fire("Login Error", "User not found in staff database.", "error");
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire("Login Error", error.message, "error");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.header h4 {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 1000;
+  font-size: 16px;
+  color: black;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.overview-card {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 4px rgba(173, 173, 173, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.overview-card:hover {
+  transform: scale(1.05);
+}
+
+.solid-purple:hover {
+  background: linear-gradient(45deg, #edc894, #d4a76e);
+}
+
+.solid-red:hover {
+  background: linear-gradient(45deg, #f2bd62, #e89a3d);
+}
+
+.solid-green:hover {
+  background: linear-gradient(45deg, #edc894, #d4a76e);
+}
+
+.solid-blue:hover {
+  background: linear-gradient(45deg, #f2bd62, #e89a3d);
+}
+
+.overview-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.overview-icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+}
+
+.overview-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.overview-text h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.overview-text p {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  padding-top: 2px;
+  padding: 0;
+}
+
+.overview-space {
+  margin-left: 10px;
+  align-items: center;
+}
+
+.overview-space h2 {
+  align-items: center;
+}
+
+.solid-purple {
+  background: linear-gradient(45deg, #edc894, #d4a76e);
+}
+
+.solid-red {
+  background: linear-gradient(45deg, #f2bd62, #e89a3d);
+}
+
+.solid-green {
+  background: linear-gradient(45deg, #edc894, #d4a76e);
+}
+
+.solid-blue {
+  background: linear-gradient(45deg, #f2bd62, #e89a3d);
+}
+
+
+.statistics {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.chart {
+  position: relative;
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 250px;
+
+}
+
+.fees-overview {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#timeFilter {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  appearance: none;
+  background: white;
+  border: 2px solid #7a4f4f;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#timeFilter:h over,
+#timeFilter:focus {
+  border-color: #a37a7a;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+#timeFilter option {
+  font-size: 1rem;
+  font-weight: 500;
+  background: white;
+  color: #333;
+  padding: 10px;
+}
+
+#sign-out-btn {
+  background-color: #f44336;
+  /* Red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#sign-out-btn:hover {
+  background-color: #d32f2f;
+}

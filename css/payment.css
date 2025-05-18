@@ -1,0 +1,950 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    position: relative; /* Add this line */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+
+.payment-container {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1800px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch;
+    margin-left: 50px;
+    min-height: 100%;
+}
+
+.payment-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #a37a7a;
+    background: transparent;
+    padding: 5px 0;
+    font-size: 14px;
+    outline: none;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.student-details {
+    width: 55%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 10px solid #ffde59;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    min-height: 100%;
+    position: relative;
+}
+
+.view-student-details-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffde59;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Fallback for background */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.editable-field {
+    border: 1px solid #ddd;
+    padding: 2px;
+    margin-left: 10px;
+    width: 60%;
+    border-radius: 4px;
+}
+
+.uneditable {
+    color: #666;
+    font-style: italic;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.btn {
+    padding: 8px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.green { background-color: #4CAF50; color: white; }
+.grey { background-color: #757575; color: white; }
+
+.payment-box h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border-bottom: 3px solid #a37a7a;
+    width: 100%;
+}
+
+.payment-box span {
+    color: #2d3748;
+    font-weight: 500;
+    text-align: right;
+    flex-grow: 1;
+}
+
+.payment-input {
+    font-size: 1rem;
+    padding: 0.8rem;
+    border: 2px solid #e2e8f0;
+    background: #f8f9fa;
+    margin-top: 0.5rem;
+}
+
+.right-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    min-height: 100%;
+}
+
+.payment-box {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 3px solid #a37a7a;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #7a4f4f;
+    text-align: center;
+    border-bottom: 3px solid #a37a7a;
+    padding: 12px 0;
+    margin: 0;
+}
+
+.student-details-heading {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.2rem;
+    color: #a37a7a;
+}
+
+.payment-box p {
+    margin: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.payment-box strong {
+    font-weight: 600;
+    color: black;
+    min-width: 45%;
+    margin-right: 1rem;
+}
+
+.student-details p,
+.student-details label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 5px 0;
+    margin-top: 20px;
+}
+
+input[type="text"],
+select {
+    width: 97.7%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 17px;
+    background: #fff;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.payment-details p {
+    margin: 0.5rem 0;
+}
+
+select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+    border: 2px solid #e2e8f0;
+    margin: 0.5rem 0 1rem;
+}
+
+.enter-button {
+    font-size: 1rem;
+    padding: 0.9rem;
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    background-color: #7a4f4f;
+    color: white;
+}
+
+.enter-button:hover {
+    background: #059669;
+    color: #333;
+}
+
+.balance-summary {
+    position: relative;
+    max-width: 1400px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.balance-summary::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 110px; 
+    height: calc(80% - 50px); 
+    width: .5px;
+    background-color: #a37a7a;
+    transform: translateX(-50%);
+}
+
+.balance-summary h2 {
+    grid-column: 1 / -1;
+    font-size: 26px;
+    font-weight: 700;
+    color: #7a4f4f;
+    border-bottom: 3px solid #7a4f4f;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.balance-summary p:hover {
+    background-color: #f1f5f9;
+}
+
+.balance-summary strong {
+    font-weight: 600;
+    color: black;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+.balance-summary span {
+    font-weight: 500;
+    color: #4a5568;
+    font-size: 18px;
+}
+
+#remaining-balance {
+    color: #e53e3e;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.activity-button {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+    background: #10B981;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: auto;
+    align-self: flex-end;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.activity-button:hover {
+    background: #059669;
+}
+
+.remove-button {
+    background: #7a4f4f;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    text-align: center;
+    font-weight: 500;
+}
+
+.remove-button:hover {
+    background: #c53030;
+    color: #fff;
+}
+
+.balance-summary p {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.history-table-container {
+    max-width: 1370px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid #a37a7a;
+    max-height: 500px;
+    overflow-y: auto;
+    height: 400px;
+}
+
+.history-table th {
+    background: #7a4f4f;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.history-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+    width: 15%;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+    width: 20%;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+    width: 10%;
+}
+
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+    width: 10%;
+}
+
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+    width: 20%;
+}
+
+.history-table th:nth-child(6),
+.history-table td:nth-child(6) {
+    width: 15%;
+}
+
+.history-table tbody tr:nth-child(odd) {
+    background-color: #f8f4f4;
+}
+
+.history-table tbody tr:nth-child(even) {
+    background-color: #e0cdcd;
+}
+
+.print-button {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 67%;
+    font-size: large;
+}
+
+.print-button:hover {
+    background: #059669;
+}
+
+@media (max-width: 768px) {
+    .history-table-container {
+        overflow-x: auto;
+    }
+
+    .history-table {
+        width: 100%;
+        min-width: 600px;
+    }
+}
+
+.balance-summary h3,
+.history-table-container h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border-bottom: 3px solid #a37a7a;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #a37a7a;
+    font-family: 'Poppins', sans-serif;
+}
+
+.close {
+    color: #a37a7a;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 17px;
+    background: #fff;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+#additional-fees-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+.fee-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.fee-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+#activities-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+.activity-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.activity-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+/* Add these styles to your payment.css */
+
+/* Activities and Fees Selection Containers */
+#activities-checkboxes, 
+#additional-fee-checkboxes {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 15px;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom Scrollbar Styling */
+#activities-checkboxes::-webkit-scrollbar,
+#additional-fee-checkboxes::-webkit-scrollbar {
+    width: 6px;
+}
+
+#activities-checkboxes::-webkit-scrollbar-track,
+#additional-fee-checkboxes::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+#activities-checkboxes::-webkit-scrollbar-thumb,
+#additional-fee-checkboxes::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+}
+
+/* Checkbox Items Styling */
+.activity-payment-option, 
+.fee-payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.activity-payment-option:hover,
+.fee-payment-option:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 2px 4px rgba(163, 122, 122, 0.1);
+    transform: translateX(3px);
+}
+
+.activity-payment-option label,
+.fee-payment-option label {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.activity-payment-option input[type="checkbox"],
+.fee-payment-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #7a4f4f;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Amount Display Styling */
+#activities-amount, 
+#additional-fees-amount {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* Section Headers */
+#activities-selection > p, 
+#additional-fee-selection > p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #7a4f4f;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #activities-checkboxes, #additional-fee-checkboxes {
+        max-height: 150px;
+    }
+    
+    .activity-payment-option, .fee-payment-option {
+        padding: 10px;
+    }
+}
+
+/* Current Balance Highlight */
+#old-balance-amount {
+    font-weight: 600;
+    color: #c53030;
+    background: #fff5f5;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+#activity-details,
+#additional-fee-details {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 15px;
+}
+
+#save-selection {
+    background: #7a4f4f;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#save-selection:hover {
+    background: #059669;
+    color: #333;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    margin: 20px 0;
+}
+
+#payment-category-sort {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+    border: 2px solid #7a4f4f;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    width: 300px;
+}
+
+#payment-category-sort:focus {
+    border-color: #7a4f4f;
+    outline: none;
+}
+
+#payment-category-sort option {
+    padding: 8px;
+    background-color: #fff;
+}
+
+#payment-category-sort option:disabled {
+    color: #ccc;
+}
+
+/* Add to payment.css */
+/* Enhanced Payment CSS */
+.checkboxes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Custom Scrollbar */
+.checkboxes-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.checkboxes-container::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.checkboxes-container::-webkit-scrollbar-thumb {
+    background: #cfd4da;
+    border-radius: 4px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 15px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.checkbox-item:hover {
+    background-color: #f1f5f9;
+    transform: translateX(3px);
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #3b82f6;
+    cursor: pointer;
+}
+
+.checkbox-item label {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #334155;
+    cursor: pointer;
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.checkbox-item.paid-item {
+    background-color: #f0fdf4;
+    opacity: 1;
+}
+
+.checkbox-item.paid-item label {
+    color: #22c55e;
+    text-decoration: none;
+    position: relative;
+    padding-left: 25px;
+}
+
+.checkbox-item.paid-item label::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.fee-option, .activity-option {
+    margin: 8px 0;
+    padding: 12px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.fee-option:hover, .activity-option:hover {
+    border-color: #94a3b8;
+}
+
+#additional-fees-container, #activities-container {
+    max-height: 250px;
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+
+
+/* Price styling */
+.price-tag {
+    font-weight: 600;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 70px;
+    text-align: right;
+}
+
+#old-balance-amount {
+    color: #dc3545;
+    font-size: 0.9em;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Back Button Styling */
+.back-button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: #7a4f4f;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background-color: #059669;
+    color: white;
+}
+
+.history-filter {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-filter label {
+    font-weight: 500;
+    margin: 0;
+}
+
+.history-filter input[type="date"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #7a4f4f;
+    width: 180px;
+}
+
+.clear-filter-btn {
+    background: #7a4f4f;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.clear-filter-btn:hover {
+    background: #613737;
+}

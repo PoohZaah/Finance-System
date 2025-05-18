@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive</title>
+    <script defer type="module" src="/js/auth.js"></script>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/report.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script defer src="/js/navbar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="/js/archive.js"></script>
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <div class="dashboard-container">
+        <div class="sidebar" id="nav-bar">
+            <button id="close-sidebar">&times;</button>
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="/images/mja-logo.png" alt="Logo">
+                </div>
+                <div class="academy-name">Mary Josette Academy</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav_link"><a href="/html/dashboard.html" id="dashboard-link"><img
+                                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                                Dashboard</span></a></li>
+                    <li class="nav_link"><a href="/html/students.html"><img src="/Mary Josette Icons/Students.png"
+                                alt="Students" class="nav-icon"><span> Students </span></a></li>
+                    <li class="nav_link"><a href="/html/report.html" id="reports-link"><img
+                                src="/Mary Josette Icons/Rename.png" alt="Reports" class="nav-icon"><span> Reports
+                            </span></a></li>
+                    <li class="nav_link"><a href="/html/settings.html"><img
+                                src="/Mary Josette Icons/Fees And Accounts.png" alt="Settings"
+                                class="nav-icon"><span>Fees & Accounts </span></a></li>
+                    <li class="nav_link"><a href="/html/remittances.html"><img src="/Mary Josette Icons/Remitances.png"
+                                alt="Remittances" class="nav-icon"><span> Remittances </span></a></li>
+                    <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                                Summary</span></a></li>
+                    <li class="nav_link active"><a href="/html/archive.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span>
+                                Archive</span></a></li>
+                    <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png"
+                                alt="Logout" class="nav-icon">
+                            <span> Logout </span></a></li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <main class="main-content-dashboard">
+            <header class="header">
+                <button id="header-toggle">☰</button>
+                <h1>SUMMARY</h1>
+            </header>
+
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+
+                </div>
+                <div class="SY">
+                    <label for="schoolYearSelect">School Year:</label>
+                    <select id="schoolYearSelect"></select>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="sort-filter">
+                    <label>Sort by:</label>
+                    <button id="graduatesBtn" class="sort-btn active">Graduates</button>
+                    <button id="dropoutsBtn" class="sort-btn">Dropouts</button>
+                </div>
+                <div class="buttons">
+                    <button class="print-button" id="printReportBtn">Print</button>
+                    <button class="excel" id="exportExcelBtn">Export</button>
+                </div>
+            </div>
+
+
+            <div id="AlumniTable" style="display: none;">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Student Number</th>
+                            <th>Name</th>
+                            <th>Grade Level</th>
+                        </tr>
+                    </thead>
+                    <tbody id="AlumniBody">
+                    </tbody>
+                </table>
+            </div>
+            <div id="DropoutsTable" style="display: none;">
+                <table class="reportTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable">Student Name</th>
+                            <th class="sortable">Student Number</th>
+                            <th class="sortable">Grade Level</th>
+                        </tr>
+                    </thead>
+                    <tbody id="DropoutsBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

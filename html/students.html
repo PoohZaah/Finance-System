@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/students.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="/js/navbar.js"></script>
+    <script defer type="module" src="/js/students.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer type="module" src="/js/auth.js"></script>
+
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <div class="dashboard-container">
+        <div class="sidebar" id="nav-bar">
+            <button id="close-sidebar">&times;</button>
+            <div class="logo-box">
+                <div class="logo">
+                    <img src="/images/mja-logo.png" alt="Logo">
+                </div>
+                <div class="academy-name">Mary Josette Academy</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav_link"><a href="/html/dashboard.html" id="dashboard-link"> <img
+                                src="/Mary Josette Icons/Dashboard.png" alt="Dashboard" class="nav-icon"><span>
+                                Dashboard</span></a></li>
+                    <li class="nav_link active"><a href="/html/students.html"><img
+                                src="/Mary Josette Icons/Students.png" alt="Students" class="nav-icon"><span>
+                                Students</span></a></li>
+
+                    <li class="nav_link"><a href="/html/report.html" id="reports-link"><img
+                                src="/Mary Josette Icons/Rename.png" alt="Reports" class="nav-icon"><span> Reports
+                            </span></a></li>
+                    <li class="nav_link"><a href="/html/settings.html"><img
+                                src="/Mary Josette Icons/Fees And Accounts.png" alt="Settings"
+                                class="nav-icon"><span>Fees & Accounts </span></a></li>
+                    <li class="nav_link"><a href="/html/remittances.html"><img src="/Mary Josette Icons/Remitances.png"
+                                alt="Remittances" class="nav-icon"><span> Remittances </span></a></li>
+                    <li class="nav_link"><a href="/html/summary.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/contract.png" alt="Dashboard" class="nav-icon"><span>
+                                Summary</span></a></li>
+                    <li class="nav_link"><a href="/html/archive.html" id="archive-link"> <img
+                                src="/Mary Josette Icons/archive (1).png" alt="Dashboard" class="nav-icon"><span>
+                                Archive</span></a></li>
+                    <li class="nav_link"><a href="#" id="logout-button"><img src="/Mary Josette Icons/log-out.png"
+                                alt="Logout" class="nav-icon"><span> Logout </span></a></li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <main class="main-content-dashboard">
+            <header class="header">
+                <button id="header-toggle">☰</button>
+                <h1>Students</h1>
+                <h4>School Year : <span class="schoolyear" id="schoolyear"> </span></h4>
+            </header>
+
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search Student" autocomplete="off">
+                </div>
+
+                <h2><span id="studentCount">0</span> <em>Listed Students</em></h2>
+                <h2 style="display: none;"><span id="dropoutCount">0</span> <em>Listed Dropouts</em></h2>
+
+                <div class="buttons">
+                    <button class="add-student" id="addStudentBtn">+ Add Students</button>
+                    <button class="end-sy" id="endSY">End School Year</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="sort-filter">
+                    <label>Sort by:</label>
+                    <button id="studentsBtn" class="sort-btn active">Students</button>
+                    <button id="dropoutsBtn" class="sort-btn">Dropouts</button>
+                </div>
+                <div class="grade-filter">
+                    <label for="gradeLevelFilter">Filter by:</label>
+                    <select id="gradeLevelFilter" class="sort-btn">
+                        <option value="all">All Grades</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="Kinder 1">Kinder 1</option>
+                        <option value="Kinder 2">Kinder 2</option>
+                        <option value="1">Grade 1</option>
+                        <option value="2">Grade 2</option>
+                        <option value="3">Grade 3</option>
+                        <option value="4">Grade 4</option>
+                        <option value="5">Grade 5</option>
+                        <option value="6">Grade 6</option>
+                        <option value="7">Grade 7</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                        <option value="11">Grade 11</option>
+                        <option value="12">Grade 12</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container" id="studentTableContainer">
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable">Student Name</th>
+                            <th class="sortable">Student Number</th>
+                            <th class="sortable">Grade Level</th>
+                            <th class="sortable">Remaining Balance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                    </tbody>
+                </table>
+                <div class="table-controls">
+                    <div class="rows-per-page">
+                        <span>Show</span>
+                        <select class="page-size">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="all">All</option>
+                        </select>
+                        <span>entries</span>
+                    </div>
+                    <div class="pagination">
+                        <button class="prev-page">Previous</button>
+                        <span class="page-info">Page 1 of 1</span>
+                        <button class="next-page">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container" id="dropoutTableContainer" style="display: none;">
+                <table id="dropoutTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable">Student Name</th>
+                            <th class="sortable">Student Number</th>
+                            <th class="sortable">Grade Level</th>
+                            <th class="sortable">Remaining Balance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dropoutTableBody">
+                    </tbody>
+                </table>
+                <div class="table-controls">
+                    <div class="rows-per-page">
+                        <span>Show</span>
+                        <select class="page-size">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="all">All</option>
+                        </select>
+                        <span>entries</span>
+                    </div>
+                    <div class="pagination">
+                        <button class="prev-page">Previous</button>
+                        <span class="page-info">Page 1 of 1</span>
+                        <button class="next-page">Next</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+</html>
